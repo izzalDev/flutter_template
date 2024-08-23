@@ -35,10 +35,10 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
-      - name: Build Demo
-        run: |
-          flutter pub get
-          flutter build web --profile --dart-define=Dart2jsOptimization=O0
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Build demo
+        run: flutter build web --profile --dart-define=Dart2jsOptimization=O0
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
