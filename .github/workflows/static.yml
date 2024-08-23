@@ -38,7 +38,7 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
       - name: Build demo
-        run: flutter build web
+        run: flutter build web --base-href "/flutter_template/"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
