@@ -38,7 +38,7 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
       - name: Build demo
-        run: flutter build web --profile --dart-define=Dart2jsOptimization=O0
+        run: flutter build web
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
