@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(
       DevicePreview(
-        enabled: kIsWeb,
+        // Enable device preview only on web in development mode.
+        enabled: kIsWeb && !kReleaseMode,
         builder: (context) => const MyApp(),
         devices: Devices.all,
       ),
