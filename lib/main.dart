@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(
       DevicePreview(
-        enabled: !kReleaseMode,
+        enabled: kIsWeb,
         builder: (context) => const MyApp(),
         devices: Devices.all,
       ),
