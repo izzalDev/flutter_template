@@ -64,6 +64,16 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+  @override
+  void initState() {
+    super.initState();
+    // This is used to show demo warning dialog on first launch of the app
+    if (kIsWeb && !kReleaseMode) {
+      WidgetsBinding.instance
+          .addPostFrameCallback((_) => _dialogBuilder(context));
+    }
+  }
+
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -129,4 +139,33 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+}
+
+// This widget is notifying in live demo.
+Future<void> _dialogBuilder(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('⚠️ Caution'),
+        content: const Text(
+          'This is a demo version of the application. '
+          'Some functions may not work properly. '
+          'For the best experience and full functionality, '
+          'please use the official release version.',
+        ),
+        actions: <Widget>[
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
+            ),
+            child: const Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }
