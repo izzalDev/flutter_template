@@ -38,7 +38,7 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
       - name: Build demo
-        run: flutter build web --base-href $(echo $GITHUB_REPOSITORY | cut -d'/' -f2)
+        run: flutter build web --base-href /$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
