@@ -19,6 +19,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Test Winget
-        run: winget
+      - name: Download Winget MSIXBundle
+        run: |
+          $url = "https://github.com/microsoft/winget-cli/releases/download/v1.8.1911/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
+          $output = "winget.msixbundle"
+          Invoke-WebRequest -Uri $url -OutFile $output
+      - name: Install Winget
+        run: |
+          Start-Process -Wait -FilePath "msiexec.exe" -ArgumentList "/i winget.msixbundle /quiet /norestart"
+      - name: Verify Winget Installation
+        run: |
+          winget --version
 
