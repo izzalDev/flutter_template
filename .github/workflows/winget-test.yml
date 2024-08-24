@@ -20,4 +20,10 @@ jobs:
       - name: Verify Winget Installation
         run: |
           winget --version
+      - name: Install innosetup
+        run: |
+          winget install --id JRSoftware.InnoSetup -e -s winget -i
+      - name: Verify innosetup Installation
+        run: |
+          Get-Command "ISCC.exe" | Select-Object Source
 
