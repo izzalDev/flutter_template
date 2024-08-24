@@ -15,19 +15,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Download Winget MSIXBundle
-        run: |
-          $url = "https://github.com/microsoft/winget-cli/releases/download/v1.8.1911/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
-          $output = "winget.msixbundle"
-          Invoke-WebRequest -Uri $url -OutFile $output
-      - name: Install Winget
-        run: |
-          Start-Process -Wait -FilePath "msiexec.exe" -ArgumentList "/i winget.msixbundle /quiet /norestart"
-      - name: Add Winget to PATH
-        run: |
-          # Menambahkan direktori Winget ke PATH secara manual
-          $env:PATH += ";C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_*\App"
-          [System.Environment]::SetEnvironmentVariable("PATH", $env:PATH, [System.EnvironmentVariableTarget]::Machine)
+      - name: Install winget
+        uses: Cyberboss/install-winget@v1
       - name: Verify Winget Installation
         run: |
           winget --version
