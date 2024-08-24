@@ -23,6 +23,11 @@ jobs:
       - name: Install Winget
         run: |
           Start-Process -Wait -FilePath "msiexec.exe" -ArgumentList "/i winget.msixbundle /quiet /norestart"
+      - name: Add Winget to PATH
+        run: |
+          # Menambahkan direktori Winget ke PATH secara manual
+          $env:PATH += ";C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_*\App"
+          [System.Environment]::SetEnvironmentVariable("PATH", $env:PATH, [System.EnvironmentVariableTarget]::Machine)
       - name: Verify Winget Installation
         run: |
           winget --version
