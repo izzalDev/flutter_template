@@ -15,11 +15,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install winget
-        uses: Cyberboss/install-winget@v1
-      - name: Verify Winget Installation
-        run: |
-          winget --version
+      # - name: Install winget
+      #   uses: Cyberboss/install-winget@v1
+      # - name: Verify Winget Installation
+      #   run: |
+      #     winget --version
       # - name: Install innosetup
       #   run: |
       #     winget install --id JRSoftware.InnoSetup -e -s winget -i
